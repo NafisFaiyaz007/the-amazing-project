@@ -28,3 +28,14 @@ h1{
     z-index: -1;
     /* background-image: url(Images/bg_star.jpg); */
 }
+.data{
+    display: none;
+}
+.g-signIn2{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-bottom: -50px;
+    z-index: 999999;
+}
