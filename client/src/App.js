@@ -1,11 +1,13 @@
 import logo from './logo.svg';
-// import React from 'react';
+import React from 'react';
 import { useEffect,useState } from 'react';
 import jwt_decode from "jwt-decode";
 import './App.css';
 
 
 function App() {
+
+
   const [user,setUser]=useState({}); 
 
   function handleCallbackResponse(response){
@@ -20,7 +22,7 @@ function App() {
     setUser({});
     document.getElementById("signInDiv").hidden=false;
   }
-
+  
   useEffect(()=> {    
      /*global google*/     
     google.accounts.id.initialize({
@@ -42,22 +44,43 @@ function App() {
   // is we have a user show the log out button
   return (
     
-    
-    <div className="App">
-      <div id="signInDiv"> </div>
-      {Object.keys(user).length !==0 &&
-         <button onClick={(e)=>handleSignOut(e)}>Sign Out </button>
-      }
-     
-      {user &&
-        <div>
-          <img src={user.picture} alt=" "></img>
-          <h3>{user.name}</h3>
-        </div>
-      }
 
+    <>
+    <div className='heading'>
+        
+        <h1>The Amazing App</h1>
+        
     </div>
+
+      
+    {/* sign in button */}
+    <div className="App">
+
+         
+        
+          <div id="signInDiv"> </div>
+          {Object.keys(user).length !== 0 &&
+              <button onClick={(e) => handleSignOut(e)}>Sign Out </button>}
+
+          {user &&
+              <div>
+                  <img src={user.picture} alt=" "></img>
+                  <h3>{user.name}</h3>
+              </div>}
+
+
+      
+      </div></>
   );
 }
+// function centerTitle(){
+//   return(
+//     <div id="text_div center_all">
+//       <div className="center_all">
+//         <h1 className="custom-subTitle">The Amazing App</h1>
+//           </div>
+//     </div>
+//   )
+// }
 
 export default App;

@@ -1,5 +1,30 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+/* style of heading */
+.heading{ 
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 72px;
+  text-align: center;
+  padding-top: 20vh ;
+  text-shadow: 0 0 10px rgba(255, 255, 255, .35);
+  
 }
 
 .App-logo {
@@ -28,11 +53,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
