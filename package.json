@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "cors": "^2.8.5",
-    "react-tsparticles": "^2.4.0",
-    "tsparticles": "^2.4.0"
-  }
-}
