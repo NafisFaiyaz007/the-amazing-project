@@ -29,18 +29,11 @@ function App() {
         <form
           action="/src/Authorization and drive/index.html"
           method="post"
-          // id="revue-form"
-          // name="revue-form"
+          
           target=""
         >
           <div className="flex flex-col md:flex-row justify-center mb-4">
-            {/* <input
-							placeholder="Your email address..."
-							type="email"
-							name="member[email]"
-							id="member_email"
-							className="text-2xl placeholder:text-gray-400 placeholder:italic py-4 px-6 md:px-10 lg:py-6 lg:px-12 bg-white bg-opacity-10 focus:bg-opacity-20 duration-150 md:rounded-tr-none md:rounded-br-none rounded-full outline-none mb-4 md:mb-0"
-						/> */}
+           
             <input
               type="submit"
               value="Sign in"
