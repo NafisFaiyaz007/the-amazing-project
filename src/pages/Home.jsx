@@ -1,12 +1,12 @@
+// this is the code for the landing page 
+
 import React from 'react';
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const Home = () => {
   return (
-    // <div>
-    //   <h1 className='text-center text-3xl font-bold py-8'>Home Page</h1>
-    // </div>
+    
 
     <div className="min-h-screen pt-20 flex flex-col text-white">
       <main className="container mx-auto px-6 pt-16 flex-1 text-center">
@@ -18,24 +18,10 @@ const Home = () => {
         </h1>
 
         <p className="text-base md:text-lg lg:text-2xl mb-8">
-          A place of confedentials!
+          A place of confidentials!
         </p>
 
-        {/* <form
-          action="/src/pages/Signin.jsx/"
-          method="post"
-          target=""
-        >
-          <div className="flex flex-col md:flex-row justify-center mb-4">
-            <input
-              type="submit"
-              value="Sign in"
-              name="member[subscribe]"
-              id="member_submit"
-              className="bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 font-bold uppercase cursor-pointer hover:opacity-75 duration-150"
-            />
-          </div>
-        </form> */}
+       {/* buttons directing to google authentication */}
         <div>
           <button
             className='bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
