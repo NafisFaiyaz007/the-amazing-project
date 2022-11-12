@@ -27,14 +27,14 @@ const Home = () => {
             className='bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
           font-bold uppercase cursor-pointer hover:opacity-75 duration-150" /> '
           >
-            <Link to="/signin">Sign up</Link>
+            <Link to="/signin">Sign in</Link>
           </button>
-          <button
+          {/* <button
             className=' rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
           font-bold uppercase px-5 text-white-1000 transition-colors duration-150 border 
           border-white-500 focus:shadow-outline hover:bg-primary-500 hover:text-white-100" /> '>
             <Link to="/signin">Log in</Link>
-          </button>
+          </button> */}
         </div>
       </main>
     </div>

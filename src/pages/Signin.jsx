@@ -22,9 +22,11 @@ const Signin = () => {
   }, [user]);
 
   return (
-    <div>
-      <h1 className='text-center text-3xl font-white text-white mb-8 py-8'>please sign in</h1>
-      <div className='max-w-[240px] m-auto py-4 r'>
+    <div className="w-auto min-h-screen m-auto text-center">
+      <h1 className="text-center text-3xl font-white text-white mb-8 py-8">
+        please sign in
+      </h1>
+      <div className="max-w-[240px] m-auto py-4 r">
         <GoogleButton onClick={handleGoogleSignIn} />
       </div>
     </div>
