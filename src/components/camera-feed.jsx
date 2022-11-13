@@ -50,8 +50,9 @@ export class CameraFeed extends Component {
 
     render() {
         return (
-          <div className="c-camera-feed min-h-screen pt-20 flex flex-col text-white">
-            <div className="c-camera-feed__viewer">
+          <div className="c-camera-feed min-h-screen pt-20 flex-col text-white w-auto min-h-screen m-auto text-center grid h-screen place-items-center ">
+            <h1>Take a picture for authentication</h1>
+            <div className="c-camera-feed__viewer ">
               <video
                 ref={(ref) => (this.videoPlayer = ref)}
                 width="680"
@@ -59,7 +60,8 @@ export class CameraFeed extends Component {
               />
             </div>
             <button
-              className="bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12"
+              className="bg-primary  rounded-full text-2xl pt-10 px-6 md:px-10 lg:py-6 lg:px-12 
+          font-bold uppercase cursor-pointer hover:opacity-75 duration-150"
               onClick={this.takePhoto}
             >
               Take photo!
