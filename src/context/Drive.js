@@ -16,7 +16,7 @@ function App() {
       clientId: CLIENT_ID,
       developerKey: API_KEY,
       viewId: "DOCS",
-      token: "ya29.a0AeTM1icFj8IGvW3oSKHBRRkQqMNonTZetxRTeSevcyB8To5g8HzAQ-NAAz1xM4FL-E8lK1gUVlYX_yFUKR6inFWat6xTFMeSdcQkqnOpz98Ps4vtHvcA8kcXmlG1OCrwHyLXhmh4jsnz6jKmYm0WfiR-BNTdaCgYKASUSARASFQHWtWOmrUYo_AgBzw0mAGv7NvmBAQ0163",
+      token: "ya29.a0AeTM1ifLuegGUJFQJ8xUHCoX9Tf3dHfCDMH1d8CwhvJOTnfFMLyCFbWovHOdotTnEOlEqNVCZl9pOM5iE1bh3V1A3413FYQMAZIby2EVryes4X6XqVMtFcj1P2BVXZFSaTUeDQ4kLi5RVYZzHGlPzkdI35fPaCgYKAQ0SARASFQHWtWOm0CvpT5nvvWvyLdLybn-pHg0163",
       showUploadView: true,
       showUploadFolders: true,
       supportDrives: true,

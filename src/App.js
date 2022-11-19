@@ -7,13 +7,15 @@ import Account from './pages/Account';
 import Home from './pages/Home';
 import Signin from './pages/Signin';
 import {Image } from './pages/index';
-import  {CameraFeed}  from "./components/camera-feed";
+import CameraFeed from './pages/CapturePicture.jsx'
+
+import ImageUpload from './ImageUpload';
 
 function App() {
   return (
     <div>
       <AuthContextProvider>
-        {/* <Navbar /> */}
+      
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />

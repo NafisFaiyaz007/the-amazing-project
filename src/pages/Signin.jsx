@@ -17,9 +17,9 @@ const Signin = () => {
 
   useEffect(() => {
     if (user != null) {
-      navigate('/account');
+      navigate('/camera');
     }
-  }, [user]);
+  }, [navigate, user]);
 
   return (
     <div className="w-auto min-h-screen m-auto text-center">
