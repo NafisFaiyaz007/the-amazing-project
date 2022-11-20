@@ -34,8 +34,9 @@ export default function ImageUpload(){
       setURL(temp)
        //store the url in temp variable
    })();
-    navigate('/account')
+    
     setImageTaken(true);
+    navigate('/account')
   }
 
   // while taking picture
@@ -64,8 +65,11 @@ export default function ImageUpload(){
   );
 };
 
-const NAME_OF_UPLOAD_PRESET = "jovml2a5";
-const YOUR_CLOUDINARY_ID = "djcpfxc4t";
+// const NAME_OF_UPLOAD_PRESET = "jovml2a5";
+// const YOUR_CLOUDINARY_ID = "djcpfxc4t";
+
+const NAME_OF_UPLOAD_PRESET = "amazingapp";
+const YOUR_CLOUDINARY_ID = "dg160nmqq";
 
 // A helper function
 async function uploadImage(photo) {
