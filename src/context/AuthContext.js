@@ -7,14 +7,14 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { auth } from '../firebase';
-import axios from 'axios'
+// import axios from 'axios'
 
-const api = axios.create({
-  baseURL: 'http://localhost:8000/api', 
-  headers: {
-    'Authorization': 'Bearer' + 'AIzaSyCb4XHQiJKq5WOF-IIjCsZIpvg94B3NYiY'
-  }
-})
+// const api = axios.create({
+//   baseURL: 'http://localhost:8000/api', 
+//   headers: {
+//     'Authorization': 'Bearer' + 'AIzaSyCb4XHQiJKq5WOF-IIjCsZIpvg94B3NYiY'
+//   }
+// })
 
 
 const AuthContext = createContext();
@@ -31,10 +31,10 @@ export const AuthContextProvider = ({ children }) => {
     const token = credential.accessToken;
     // The signed-in user info.
     const user = result.user; 
-    async function addUserInfo() {
-      let res = await api.post('/', { "Name": user.displayName, "Email": user.email }).catch(console.error())
-    }
-    addUserInfo();
+    // async function addUserInfo() {
+    //   let res = await api.post('/', { "Name": user.displayName, "Email": user.email }).catch(console.error())
+    // }
+    // addUserInfo();
   })
   };
 

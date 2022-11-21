@@ -2,8 +2,12 @@ import ImageCapture from "react-image-data-capture";
 import React, { useState } from "react";
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "./context/AuthContext";
+import axios from "axios";
 
 export default function ImageUpload(){
+  const { user } = UserAuth();
+
   const [showImgCapture, setShowImgCapture] = useState(true);
   const [URL, setURL] = useState("");
   const config = useMemo(() => ({ video: true }), []);
@@ -17,7 +21,7 @@ export default function ImageUpload(){
   const navigate=useNavigate();
   const onCapture = (imageData) => {
     // read as webP
-    setImgSrc(imageData.webP);
+    setImgSrc(imageData.blob);
     // read as file
     // Unmount component to stop the video track and release camera
     setShowImgCapture(false);
@@ -30,7 +34,7 @@ export default function ImageUpload(){
   if(!imageTaken && imgSrc){
     var temp;
     (async()=>{
-      temp = await uploadImage(imgSrc)
+      temp = await uploadImage(imgSrc, user.displayName, user.email)
       setURL(temp)
        //store the url in temp variable
    })();
@@ -69,10 +73,10 @@ export default function ImageUpload(){
 // const YOUR_CLOUDINARY_ID = "djcpfxc4t";
 
 const NAME_OF_UPLOAD_PRESET = "amazingapp";
-const YOUR_CLOUDINARY_ID = "dg160nmqq";
+const YOUR_CLOUDINARY_ID = "dohm1cuk2";
 
 // A helper function
-async function uploadImage(photo) {
+async function uploadImage(photo, username, useremail) {
   const data = new FormData();
   data.append("file", photo);
   data.append("upload_preset", NAME_OF_UPLOAD_PRESET);
@@ -83,7 +87,20 @@ async function uploadImage(photo) {
       body: data
     }
   );
+  const api = axios.create({
+    baseURL: 'http://localhost:8000/api', 
+    headers: {
+      'Authorization': 'Bearer' + 'AIzaSyCb4XHQiJKq5WOF-IIjCsZIpvg94B3NYiY'
+    }
+  })
   const img = await res.json();
   console.log(img);
+  console.log(img.secure_url);
+ 
+  const userinfo = new FormData();
+  userinfo.append("Name", username);
+  userinfo.append("Email", useremail);
+  userinfo.append("Image", img.secure_url);
+  api.post('/', userinfo).catch(console.error())
   return img.secure_url;
 }
