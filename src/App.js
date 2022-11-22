@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Signin from './pages/Signin';
 import {Image } from './pages/index';
 import CameraFeed from './pages/CapturePicture.jsx'
+import ImageAuth from "./ImageAuth";
 
 import ImageUpload from './ImageUpload';
 
@@ -19,7 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
-          <Route path='/camera' element={<CameraFeed/>}/>
+          <Route path='/camera' element={<ImageAuth/>}/>
           {/* <Route path='/Image' element={<index/>}/> */}
           <Route
             path='/account'
