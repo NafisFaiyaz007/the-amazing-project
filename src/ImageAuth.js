@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 function ImageAuth() {
+  const navigate = useNavigate();
 const [userExists, setUserExists] = useState(true)
   let faceioInstance = null
 
@@ -38,7 +41,8 @@ const [userExists, setUserExists] = useState(true)
       console.log('Enrollment Date: ', userInfo.timestamp)
       console.log('Gender: ', userInfo.details.gender)
       console.log('Age Approximation: ', userInfo.details.age)
-    } catch (errorCode) {
+    navigate("/account"); 
+  } catch (errorCode) {
       console.log(errorCode)
       handleError(errorCode)
     }
@@ -54,7 +58,8 @@ const [userExists, setUserExists] = useState(true)
   
       console.log('Unique Facial ID: ', userData.facialId)
       console.log('PayLoad: ', userData.payload)
-    } catch (errorCode) {
+   navigate('/account'); 
+   } catch (errorCode) {
       console.log(errorCode)
       handleError(errorCode)
     }
@@ -129,15 +134,17 @@ const [userExists, setUserExists] = useState(true)
 
   if(userExists){
     return (
-        <div>
-        <button className="action face-sign-in" onClick={faceSignIn} style = {{color:"white"}}>Face Sign In</button>
+        <div className="w-auto min-h-screen grid h-screen place-items-center m-auto text-center">
+        <button className="action face-sign-in bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
+          font-bold uppercase cursor-pointer hover:opacity-75 duration-150" onClick={faceSignIn} style = {{color:"white"}}>Image Authentication</button>
         </div>
     )
   }
   else{
     return (
-        <div>
-        <button className="action face-registration" onClick={faceRegistration} style = {{color:"white"}}>Face Registration</button>
+        <div className="w-auto min-h-screen grid h-screen place-items-center m-auto text-center">
+        <button className="action face-registration bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
+          font-bold uppercase cursor-pointer hover:opacity-75 duration-150" onClick={faceRegistration} style = {{color:"white"}}>Image Registration</button>
         </div>
     )
   }
