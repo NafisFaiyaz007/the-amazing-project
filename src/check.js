@@ -18,7 +18,7 @@ export default function Check () {
           })
           .then((res) => {
             check = true
-            if(check=    true)
+            if(check=== true)
             navigate('/authenticate');  
             
         });

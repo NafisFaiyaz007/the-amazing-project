@@ -12,7 +12,7 @@ import ImageAuth from "./ImageAuth";
 import Check from './check';
 import Authenticate from './Authenticate';
 import Enroll from './Enroll';
-import ImageUpload from './ImageUpload';
+
 
 // import ImageUpload from './ImageUpload';
 
@@ -28,7 +28,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/check' element={<Check />} />
-          <Route path='/camera' element={<ImageUpload/>}/>
+          {/* <Route path='/camera' element={<ImageUpload/>}/> */}
           <Route path='/authenticate' element={<Authenticate/>}/>
           <Route path='/enroll' element={<Enroll/>}/>
           {/* <Route path='/Image' element={<index/>}/> */}
