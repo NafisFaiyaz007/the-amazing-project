@@ -2,6 +2,7 @@ import React from 'react';
 import { UserAuth } from '../context/AuthContext';
 import { Link } from "react-router-dom";
 import App from "../context/Drive";
+import encrypt  from "../enc_dec";
 
 const Account = () => {
   const { logOut, user } = UserAuth();
@@ -29,8 +30,8 @@ const Account = () => {
         </h1>
 
        
-          <App />
-         
+            <App /> 
+
        
       </div>
 

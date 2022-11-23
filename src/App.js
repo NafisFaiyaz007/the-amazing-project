@@ -9,10 +9,17 @@ import Signin from './pages/Signin';
 // import {Image } from './pages/index';
 // import CameraFeed from './pages/CapturePicture.jsx'
 import ImageAuth from "./ImageAuth";
+import Check from './check';
+import Authenticate from './Authenticate';
+import Enroll from './Enroll';
+import ImageUpload from './ImageUpload';
 
 // import ImageUpload from './ImageUpload';
 
 function App() {
+//   var cors = require('cors')
+
+// app.use(cors());
   return (
     <div>
       <AuthContextProvider>
@@ -20,7 +27,10 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
-          <Route path='/camera' element={<ImageAuth/>}/>
+          <Route path='/check' element={<Check />} />
+          <Route path='/camera' element={<ImageUpload/>}/>
+          <Route path='/authenticate' element={<Authenticate/>}/>
+          <Route path='/enroll' element={<Enroll/>}/>
           {/* <Route path='/Image' element={<index/>}/> */}
           <Route
             path='/account'

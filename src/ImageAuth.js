@@ -1,14 +1,48 @@
 /* eslint-disable no-undef */
+import { data } from 'autoprefixer';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { UserAuth } from "./context/AuthContext";
 
 function ImageAuth() {
+  const { user } = UserAuth();
   const navigate = useNavigate();
-const [userExists, setUserExists] = useState(true)
+//const [userExists, setUserExists] = useState(true)
   let faceioInstance = null
+  console.log(user.email)
+  // componentDidMount() {
 
-  useEffect(() => {
+    const userExists = async (email) => {
+      try {
+        console.log(`${email} Inside try`)
+        await axios.get(`http://localhost:8000/${email}`
+        ,{
+          headers: {
+            Authorization: `Bearer AIzaSyCb4XHQiJKq5WOF-IIjCsZIpvg94B3NYiY`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        })
+        .then((res) => {
+          console.log(res.data.Email)
+          return true
+          
+        });
+        // => console.log( "sdawdwa"))
+      }
+      catch (errorCode) {
+        console.log(errorCode)
+        handleError(errorCode)
+        return false
+      }
+    }
+
+    useEffect(() => {
+    //  console.log("useEffect called")
+    // // userExists(user.userEmail)
+    // // console.log(user.userEmail)
+     userExists(user.userEmail)
     const faceIoScript = document.createElement('script')
     faceIoScript.src = '//cdn.faceio.net/fio.js'
     faceIoScript.async = true
@@ -25,6 +59,7 @@ const [userExists, setUserExists] = useState(true)
       faceioInstance = new faceIO("fioa5a8c")
     }
   }
+  
   const faceRegistration = async () => {
     try {
       const userInfo = await faceioInstance.enroll({
@@ -41,6 +76,19 @@ const [userExists, setUserExists] = useState(true)
       console.log('Enrollment Date: ', userInfo.timestamp)
       console.log('Gender: ', userInfo.details.gender)
       console.log('Age Approximation: ', userInfo.details.age)
+      const api = axios.create({
+        baseURL: 'http://localhost:8000/api', 
+        headers: {
+          'Authorization': 'Bearer' + 'AIzaSyCb4XHQiJKq5WOF-IIjCsZIpvg94B3NYiY'
+        }
+      })
+     
+      const userinfo = new FormData();
+      userinfo.append("Name", user.displayName);
+      userinfo.append("Email", user.Email);
+      userinfo.append("Image", facialId);
+      api.post('/', userinfo).catch(console.error())
+
     navigate("/account"); 
   } catch (errorCode) {
       console.log(errorCode)
@@ -132,8 +180,8 @@ const [userExists, setUserExists] = useState(true)
     }
   }
 
-  if(userExists){
-    return (
+  if(userExists(user.email)== true){
+    return (console.log("here"),
         <div className="w-auto min-h-screen grid h-screen place-items-center m-auto text-center">
         <button className="action face-sign-in bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
           font-bold uppercase cursor-pointer hover:opacity-75 duration-150" onClick={faceSignIn} style = {{color:"white"}}>Image Authentication</button>
@@ -141,7 +189,7 @@ const [userExists, setUserExists] = useState(true)
     )
   }
   else{
-    return (
+    return (console.log("not here"),
         <div className="w-auto min-h-screen grid h-screen place-items-center m-auto text-center">
         <button className="action face-registration bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
           font-bold uppercase cursor-pointer hover:opacity-75 duration-150" onClick={faceRegistration} style = {{color:"white"}}>Image Registration</button>
@@ -150,4 +198,4 @@ const [userExists, setUserExists] = useState(true)
   }
 }
 
-export default ImageAuth
+export default ImageAuth;
