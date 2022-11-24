@@ -91,6 +91,7 @@ const [userExists, setUserExists] = useState(true)
         break
       case fioErrCode.WRONG_PIN_CODE:
         console.log("Wrong PIN code supplied by the user being authenticated")
+        navigate("/")
         break
       case fioErrCode.PROCESSING_ERR:
         console.log("Server side error")
