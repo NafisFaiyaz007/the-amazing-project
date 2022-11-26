@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { UserAuth } from "./context/AuthContext";
 
  function Authenticate () {
+ 
     const { user } = UserAuth();
     const navigate = useNavigate();
     let faceioInstance = null

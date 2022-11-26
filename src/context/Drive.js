@@ -45,7 +45,7 @@ function App() {
   return (
     <div className="App">
 
-      <button  className=" bg-primary rounded-full text-xl text-center border py-2 px-5 mt-10" id='bttn1' onClick={() => handleOpenPicker()}>Import File</button>
+      <button  className=" bg-primary rounded-full text-l md:text-s text-center text-bold py-2 px-5 mt-10" id='bttn1' onClick={() => handleOpenPicker()}>Import File</button>
     </div>
     
        
