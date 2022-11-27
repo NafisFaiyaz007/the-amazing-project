@@ -27,7 +27,7 @@ function Enroll () {
     const faceIoScriptLoaded = () => {
       console.log(faceIO)
       if (faceIO && !faceioInstance) {
-        faceioInstance = new faceIO("fioa5a8c")
+        faceioInstance = new faceIO("fioa69a0")
       }
     }
     
