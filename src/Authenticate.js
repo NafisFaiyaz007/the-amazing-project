@@ -26,7 +26,7 @@ import { UserAuth } from "./context/AuthContext";
       const faceIoScriptLoaded = () => {
         console.log(faceIO)
         if (faceIO && !faceioInstance) {
-          faceioInstance = new faceIO("fioa69a0")
+          faceioInstance = new faceIO("fioaf028")
         }
       }
       
