@@ -1,0 +1,29 @@
+
+const { Console } = require('console');
+const crypto = require('crypto');
+const fs = require('fs');
+
+
+export default function Encrypt  (buffer)  {
+// function EncryptFile (file) {
+  
+
+
+    const algorithm = 'aes-256-ctr';
+    let key = 'MySecretKey';
+    key = crypto.createHash('sha256').update(String(key)).digest('base64').substring(0, 32);
+
+//Encryption
+    //Create inistialization vector
+    const iv = crypto.randomBytes(16);
+
+    //Create a new cypher using the algorithm , key, iv
+    const cipher = crypto.createCipheriv(algorithm, key, iv);
+    //Create new encrypted buffer
+    const result = Buffer.concat([iv, cipher.update(buffer), cipher.final()]);
+    return result;
+}
+
+
+
+//  export default new Encrypt();
