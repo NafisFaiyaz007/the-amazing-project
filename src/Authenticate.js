@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import { data } from 'autoprefixer';
-import axios from 'axios';
+// import { data } from 'autoprefixer';
+// import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { UserAuth } from "./context/AuthContext";
@@ -26,7 +26,7 @@ import { UserAuth } from "./context/AuthContext";
       const faceIoScriptLoaded = () => {
         console.log(faceIO)
         if (faceIO && !faceioInstance) {
-          faceioInstance = new faceIO("fioa5a8c")
+          faceioInstance = new faceIO("fioaf028")
         }
       }
       

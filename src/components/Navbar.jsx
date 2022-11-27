@@ -20,7 +20,7 @@ const Navbar = () => {
       </h1>
       {user?.displayName ? (
         <button
-          className="rounded-full bg-primary rounded-full md:text-s lg:text-l text-white text-center py-2 px-5 mt-0"
+          className="rounded-full bg-primary md:text-s lg:text-xl text-white text-center py-2 px-5 mt-0"
           onClick={handleSignOut}
         >
           Logout

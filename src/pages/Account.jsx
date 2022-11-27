@@ -1,8 +1,10 @@
 import React from 'react';
-import { UserAuth } from '../context/AuthContext';
+// import { UserAuth } from '../context/AuthContext';
 // import { Link } from "react-router-dom";
 import App from "../context/Drive";
 import Navbar from '../components/Navbar';
+import DragDrop from '../components/DragDrop';
+import Viewer from '../components/FileViewer';
 // import encrypt  from "../enc_dec";
 
 const Account = () => {
@@ -26,34 +28,17 @@ const Account = () => {
           <h1 className="p text-center text-l md:text-l lg:text-2xl text-white p-5">
             Import from drive
             <App />
+            <DragDrop/>
           </h1>
 
           <div className="text-center text-l md:text-l lg:text-2xl text-white p-5 float-right">
             <h1>view file</h1>
+            <Viewer/>
           </div>
         </div>
       </div>
 
-      {/* <div className="w-auto min-h-10 m-auto left-0 top-0">
-        <h1 className="text-s md:text-l lg:text-xl text-white p-5 ">
-          Accounts
-        </h1>
-      </div>
-
-      <div className="w-auto min-h-10 m-auto right-0 top-0">
-        <button
-          onClick={handleSignOut}
-          className=" bg-primary rounded-full md:text-s text-s lg:text-xl text-center border py-2 px-2 mt-0"
-        >
-          Log out
-        </button>
-      </div> */}
-
-      {/* <div>
-        <p className=" text-center text-l md:text-l lg:text-2xl text-white p-5">
-          Welcome, {user?.displayName}
-        </p>
-      </div> */}
+      
     </div>
   );
 };
