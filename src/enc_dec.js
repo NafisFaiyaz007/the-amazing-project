@@ -15,7 +15,6 @@ const encrypt = (buffer) => {
     const cipher = crypto.createCipheriv(algorithm, key, iv);
     //Create new encrypted buffer
     const result = Buffer.concat([iv, cipher.update(buffer), cipher.final()]);
-    console.log(result)
     return result;
 }
 
@@ -32,30 +31,29 @@ const decrypt = (encrypted) => {
 
     //Decrypt it
     const result = Buffer.concat([decipher.update(encrypted), decipher.final()]);
-    console.log("decrypted: ",result)
     return result;
 }
 
-//Read File
-// fs.readFile('pls encrypt me.txt', (err, file) => {
-//     if (err)
-//         return console.error(err.message);
+// Read File
+fs.readFile('sample.txt', (err, file) => {
+    if (err)
+        return console.error(err.message);
 
-//    console.log(`Curent file data: ${file}`);
+   console.log(`Curent file data: ${file}`);
 
-//     //Encrypt the file
-//     const encryptedFile = encrypt(file);
+    //Encrypt the file
+    const encryptedFile = encrypt(file);
 
-//     //Flow the encrypted file data to the new file
-//     fs.writeFile('/file.txt', encryptedFile, (err, file) => {
-//         if (err)
-//             return console.error(err.message);
-//         if (file) {
-//             console.log('File Encrypted Successfully');
+    //Flow the encrypted file data to the new file
+    fs.writeFile('/file.txt', encryptedFile, (err, file) => {
+        if (err)
+            return console.error(err.message);
+        if (file) {
+            console.log('File Encrypted Successfully');
         
-//         }
-//     })
-// })
+        }
+    })
+})
 
 fs.readFile('/file.txt', (err, file) => {
     if (err)
@@ -65,7 +63,7 @@ fs.readFile('/file.txt', (err, file) => {
     if (file) {
         const decryptedFile = decrypt(file);
         console.log(decryptedFile.toString());
-        fs.writeFile('file.txt', decryptedFile, (err, file) => {
+        fs.writeFile('decrypted_file.txt', decryptedFile, (err, file) => {
             if (err)
                 return console.error(err.message);
         })

@@ -3,7 +3,7 @@ import { FileUploader } from "react-drag-drop-files";
 
 import "./DragDrop.css";
 
-const fileTypes = ["JPEG","DOCX","PDF"];
+const fileTypes = ["JPG","DOCX","PDF"];
 
 export default function DragDrop() {
   const [file, setFile] = useState(null);
