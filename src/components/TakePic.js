@@ -2,7 +2,7 @@ import ImageCapture from "react-image-data-capture";
 import React, { useState } from "react";
 import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserAuth } from "./context/AuthContext";
+import { UserAuth } from "../context/AuthContext";
 import axios from "axios";
 
 export default function ImageUpload(){
@@ -40,7 +40,7 @@ export default function ImageUpload(){
    })();
     
     setImageTaken(true);
-    navigate('/account')
+    navigate('/enroll')
   }
 
   // while taking picture

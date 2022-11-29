@@ -63,7 +63,8 @@ export default function Viewer() {
 
   return (
     <div className="DragDrop">
-      <h1>Sample react-doc-viewer</h1>
+      <h1 className=" text-center text-l md:text-l lg:text-2xl text-white p-5">
+        Decrypted Document view</h1>
       <DocViewer
         pluginRenderers={DocViewerRenderers}
         documents={docs}

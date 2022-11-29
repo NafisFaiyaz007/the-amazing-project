@@ -25,7 +25,7 @@ export default function Check () {
         }
         catch (errorCode) {
               console.log(errorCode)
-              navigate('/enroll')
+              navigate('/camera')
               
             }
         }
