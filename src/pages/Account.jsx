@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import DragDrop from '../components/DragDrop';
 import Viewer from '../components/FileViewer';
+import DrivePicker from '../context/Drive';
+//import {HandleClientLoad} from '../context/drivesource';
 
 
 const Account = () => {
@@ -22,7 +24,7 @@ const Account = () => {
 
           <div className="text-center text-l md:text-l lg:text-2xl text-white p-5 float-right">
             <h1>view file</h1>
-            {/* <App/> */}
+            <DrivePicker/>
           </div>
         </div>
       </div>

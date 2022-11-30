@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "drive-api-367210",
+  "private_key_id": "c94552cab9fd712a92876e8efeb926a493943fa7",
+  "private_key": "-----BEGIN PRIVATE KEY-----MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDm8aRcq0qE4G1T\nzm7I3qvev+UOH6pFmx0tJOJTYcZXzu72lp8yi+HRqeQWSsyPfzfHcS2ZTFB1quEx\nIgjFApUlRbEKTvPt7Oh4ocs+DVdOKYsNucCjjP0SqRh3FMRN32lOFlhIHkgkPAUA\nmgaL/9HZPkZU9r3wDpbVN2GFz4J2bTT46inT6Qf3tdL17jVU1ERisdI2ddQRgvIF\nYgLN4YsbsqgVjt0NmiffyJz7hco02OwfLGOec+nRbdyThTbZO/GGRuPUdEzMeJTJ\nXpMABoU66RbQWY22YXa3r4wFruKM8Bi1EVEa9H4buRTG97xlMUO/9Vds9+8fyOx+\nVQfQU8ufAgMBAAECggEAIEI5UDceVfM3XOZ6nmpOyEg2Xu5YuBeo+qj/8t+3IdrQ\n5vbhI+Fa2LuKFacQbdblBrcuGboJict7Cy7oL1oN/+0n2VBv+EMIXJlVAhpA9gpi\n1wxO9p7MrDJHLZMOsfChYqadDEMr6+EfsxbQuqDa7M/VvoEnb4R02IbqLhPEncqd\nbFhQZwcCQ62xlDMLquLqO9/oJFQMQUcvetdGrMUZT5DQFQj214D6Ofp1wD5SJqPV\n2wTjWdzf7ScGRm/Er4HSxAn0hchywXKuoWeCK0GS0xC9uw31lSZje6GtLo3QETG4\nFnW9YuwXAgyO9HnwiGTXk+jEKxmbueaDEoXIdXBzkQKBgQDzNtM3eirdB1Oa0DIo\nlHu/HSi3oXhQEE3trl4yTmBq+Ji/8vFtRvs+TaQEDJYtyB9JCkh2cSyZSsdkU8sq\n/fq4ktGBx+6C33KBxmtjNDjsWCwC06ubyApelQvsaklpptkzrnMxahRnycdjwcuN\nR8YKyARzLyX0nGzE1maqiaBLFwKBgQDzFa8evW0bpEFMJTHxuHPlFdLRn9N31LPf\nXDkjbmyWdOeGHPleuQtP1vks7Cy9l5iA4BJibAjpgKYFB6yvXAmcfcMXUL04Aggh\n1Ju0rrxz1T5iV1AkbFnRMBOU3K9sC0eG60ER+pr/SE7vh7TUYM3DJmi1rKH6HeDG\nR/81hcO4uQKBgQCPwbss0nAdfyQioKbVJ5bRStnzWGS15j05nNQepgcFk3UuF9ot\n/kOo+tlUb2AhJWWglYxpPdHftbyPh5vSCJc2m8lsDZHkF1EmdfKpi4eN4zv4W8bW\naHIAn9aRYe2MnktJ6fY6ofn3suPBCh5XnrHnU3yV3KtxnzgHTLcYXAq79wKBgGsI\nvEBD1lwaeioGIrS1rEpNzrNAtcOI497Q49PnFmc1eJCEB4We4w03siYGpDijHKJ6\nh33Q5iey3udOFspsM0s10QZeJcMYme4TiLAJVK+IUNzKZ15yWyYSDj044wEnAkq1\nIcTB3SfU9fTgg04UheWM7wQ3zGauaz/DietOR/z5AoGAeF8kPJKa4rCSV7oKbpbZ\n/Gt0gaR01GyCp0uvucHaCSaq4tuSbuwVcwgIXOciMtqmFajKdZA5/QsTFXZzb2Ic\nEkatvnwbHV7lJZMPZOmrOMcAI23DklqY1bu5gtMP8Utc0VoO2RE/LgrqgmgrOHhi\n+wSYyR8+sIzcAO+x+3GlX1o=\n-----END PRIVATE KEY-----\n",
+  "client_email": "amazing-app@drive-api-367210.iam.gserviceaccount.com",
+  "client_id": "112575513146202375431",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/amazing-app%40drive-api-367210.iam.gserviceaccount.com"
+}
