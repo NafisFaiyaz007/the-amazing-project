@@ -29,16 +29,17 @@ const drive = google.drive({
 const filePath = path.join('./', 'sky.jpg');
 
 //function to upload the file
- async function uploadFile() {
+ async function uploadFile(filename, file) {
     try{
       const response = await drive.files.create({
         requestBody: {
-            name: 'sky.jpg', //file name
+            name: filename, //file name
             mimeType: 'image/jpeg',
         },
         media: {
             mimeType: 'image/jpeg',
-            body: fs.createReadStream(filePath),
+            body: fs.createReadStream(file),
+            //body: fs.createReadStream(filePath),
         },
       });
   
@@ -48,12 +49,12 @@ const filePath = path.join('./', 'sky.jpg');
     }
 }
   
-uploadFile()
+//uploadFile()
 //delete file function
-async function deleteFile() {
+async function deleteFile(fileid) {
     try {
         const response = await drive.files.delete({
-            fileId: '1psrdHiVyQEJeTruNAH15_9TIY2oRuyzN',
+            fileId: fileid,
         });
         console.log(response.data, response.status);
     } catch (error) {
@@ -63,9 +64,9 @@ async function deleteFile() {
 
 
 //create a public url
-async function generatePublicUrl() {
+async function generatePublicUrl(fileid) {
     try {
-        const fileId = '1psrdHiVyQEJeTruNAH15_9TIY2oRuyzN';
+        const fileId = fileid;
         //change file permisions
         await drive.permissions.create({
             fileId: fileId,
@@ -85,4 +86,5 @@ async function generatePublicUrl() {
     }
   }
 
-  generatePublicUrl()
+  //generatePublicUrl()
+  module.exports = {uploadFile, generatePublicUrl}

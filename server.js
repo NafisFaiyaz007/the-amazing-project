@@ -3,6 +3,8 @@ var app = express();
 var multer = require('multer')
 var cors = require('cors');
 var fs = require('fs');
+const path = require('path');
+var drive = require('./src/googledrive/index')
 
 const { Console } = require('console');
 const crypto = require('crypto');
@@ -25,9 +27,6 @@ let key = 'MySecretKey';
 key = crypto.createHash('sha256').update(String(key)).digest('base64').substring(0, 32);
 function Encrypt  (buffer)  {
 // function EncryptFile (file) {
-  
-
-
 //Encryption
     //Create inistialization vector
     const iv = crypto.randomBytes(16);
@@ -55,6 +54,7 @@ const decrypt = (encrypted) => {
   console.log("decrypted: ",result)
   return result;
 }
+const filePath = path.join('./src', 'bg.jpg');
 app.post('/upload',(req, res) => {
     upload(req, res, function (err) {
            if (err instanceof multer.MulterError) {
@@ -90,8 +90,8 @@ app.post('/upload',(req, res) => {
             console.log(`\nDeleted file: ${req.file.filename}`);
 
           }
-        }))
-        
+        }));drive.uploadFile('encryptedImage', `${req.file.originalname}`)
+         
     })
 
     // },
@@ -117,8 +117,6 @@ app.post('/decrypt', (req, res) => {
 
 console.log(req.file)
 
-
-
  fs.readFile(`./upload/${req.file.filename}`, (err, file) => {
   if (err)
       return console.error(err.message);
@@ -130,14 +128,14 @@ console.log(req.file)
       fs.writeFile(req.file.originalname, decryptedFile, (err, file) => {
           if (err)
               return console.error(err.message);
-      })
+      });drive.generatePublicUrl('10pVrSYLRhRwuKgPgLn3DvptCJaOXNXkS')
   }
 })
 
 res.status(200).send(req.file)
 });
 });
-
+//app.post(`/`)
 app.listen(8080, function() {
 
   console.log('App running on port 8080');

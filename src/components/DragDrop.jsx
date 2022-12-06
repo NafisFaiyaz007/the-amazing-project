@@ -5,23 +5,38 @@ import axios from 'axios';
 // import PDFViewer from 'pdf-viewer-reactjs'
 import "./DragDrop.css";
 import Encrypt from "../context/encrypt";
+import { Document, Page } from 'react-pdf';
+
 
 const fileTypes = ["JPG","JPEG","DOCX","PDF", "txt"];
 
 export default function DragDrop() {
   const [file, setFile] = useState();
   const [isFileSelected, setIsFileSelected] = useState(false)
+  // const [numPages, setNumPages] = useState(null);
+  // const [pageNumber, setPageNumber] = useState(1);
+  // const [pdffile, setPdfFile] = useState();
 
+  
+  
   const handleChange = (file) => {
     setFile(file);
     setIsFileSelected(true)
     console.log(file.name)
-
-    // setFile = Encrypt(file);
-    // console.log("File Encrypted")
-  };
-  
-  const handleEncryption = (file) => {
+    // let reader = new FileReader();
+    // reader.readAsText(file);
+    // reader.onloadend=(e)=>{
+    //   //setPdfError('');
+    //   setPdfFile(e.target.result);}
+      
+      // setFile = Encrypt(file);
+      // console.log("File Encrypted")
+    };
+    
+    // function onDocumentLoadSuccess({ numPages }) {
+    //   setNumPages(numPages);
+    // }
+    const handleEncryption = (file) => {
     // if (!file){
     //   return console.log("File not selected")
     // }
@@ -86,8 +101,36 @@ export default function DragDrop() {
       >
         Decrypt
       </button>
-      
+      {/* <div>
+      <Document file={pdffile} onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
+    </div> */}
     </div>
   );
 }
-// "rounded-full bg-secondary md:text-s lg:text-xl text-black text-center py-2 px-5 mt-0 ml-10"
+// "rounded-full bg-secondary md:text-s lg:text-xl text-black text-center py-2 px-5 mt-0 ml-10"import React, { useState } from 'react';
+// import { Document, Page } from 'react-pdf';
+
+// function MyApp() {
+//   const [numPages, setNumPages] = useState(null);
+//   const [pageNumber, setPageNumber] = useState(1);
+
+//   function onDocumentLoadSuccess({ numPages }) {
+//     setNumPages(numPages);
+//   }
+
+//   return (
+//     <div>
+//       <Document file= {file} onLoadSuccess={onDocumentLoadSuccess}>
+//         <Page pageNumber={pageNumber} />
+//       </Document>
+//       <p>
+//         Page {pageNumber} of {numPages}
+//       </p>
+//     </div>
+//   );
+// }
