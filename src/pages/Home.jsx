@@ -2,12 +2,10 @@
 
 import React from 'react';
 import { Link } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+
 
 const Home = () => {
   return (
-    
-
     <div className="min-h-screen pt-20 flex flex-col text-white">
       <main className="container mx-auto px-6 pt-16 flex-1 text-center">
         <h2 className="text-2xl md:text-4xl lg:text-6xl uppercase">
@@ -21,7 +19,7 @@ const Home = () => {
           A place of confidentials!
         </p>
 
-       {/* buttons directing to google authentication */}
+        {/* buttons directing to google authentication */}
         <div>
           <button
             className='bg-primary  rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
@@ -29,12 +27,9 @@ const Home = () => {
           >
             <Link to="/signin">Sign in</Link>
           </button>
-          {/* <button
-            className=' rounded-full text-2xl py-4 px-6 md:px-10 lg:py-6 lg:px-12 
-          font-bold uppercase px-5 text-white-1000 transition-colors duration-150 border 
-          border-white-500 focus:shadow-outline hover:bg-primary-500 hover:text-white-100" /> '>
-            <Link to="/signin">Log in</Link>
-          </button> */}
+
+
+          
         </div>
       </main>
     </div>

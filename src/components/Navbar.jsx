@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between bg-opacity-10 w-full p-4">
       <h1 className="text-center uppercase text-l md:text-l lg:text-2xl text-white p-5">
-        Welcome, {user?.displayName}
+        Welcome, {user?.displayName} 
       </h1>
       {user?.displayName ? (
         <button

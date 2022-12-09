@@ -3,7 +3,12 @@ import { GoogleButton } from 'react-google-button';
 import { UserAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+
+
+
+
 const Signin = () => {
+
   const { googleSignIn, user } = UserAuth();
   const navigate = useNavigate();
 
@@ -29,6 +34,7 @@ const Signin = () => {
       <div className="max-w-[240px] m-auto py-4 r">
         <GoogleButton onClick={handleGoogleSignIn} />
       </div>
+      
     </div>
   );
 };
