@@ -184,7 +184,7 @@ export default function DragDrop() {
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        
         <div style={{overflow: 'hidden', maxHeight: '20%'}}>
 
         {pdfFile&&(
@@ -214,48 +214,7 @@ export default function DragDrop() {
             }
 
 
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
       </Modal>
-{/* render this if we have a pdf file */}
-
-
-
-      {/* <div>
-      <Document file={pdffile} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
-    </div> */}
     </div>
   );
 }
-// "rounded-full bg-secondary md:text-s lg:text-xl text-black text-center py-2 px-5 mt-0 ml-10"import React, { useState } from 'react';
-// import { Document, Page } from 'react-pdf';
-
-// function MyApp() {
-//   const [numPages, setNumPages] = useState(null);
-//   const [pageNumber, setPageNumber] = useState(1);
-
-//   function onDocumentLoadSuccess({ numPages }) {
-//     setNumPages(numPages);
-//   }
-
-//   return (
-//     <div>
-//       <Document file= {file} onLoadSuccess={onDocumentLoadSuccess}>
-//         <Page pageNumber={pageNumber} />
-//       </Document>
-//       <p>
-//         Page {pageNumber} of {numPages}
-//       </p>
-//     </div>
-//   );
-// }
