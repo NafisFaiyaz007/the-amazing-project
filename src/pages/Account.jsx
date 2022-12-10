@@ -3,9 +3,6 @@ import Navbar from '../components/Navbar';
 import DragDrop from '../components/DragDrop';
 import Viewer from '../components/FileViewer';
 
-
-
-
 // import DrivePicker from '../context/Drive';
 //import {HandleClientLoad} from '../context/drivesource';
 import { signIn } from "../gdrive/utils";
@@ -16,13 +13,12 @@ let REDIRECT_URI = "http://127.0.0.1:5500/src/gdrive/profile.html";
 let SCOPES = "https://www.googleapis.com/auth/drive";
 
 function sign() {
+  
   signIn(CLIENT_ID, REDIRECT_URI, SCOPES);
 }
 
-
 const Account = () => {
   
-
   return (
     <div className="min-h-screen p-10 flex flex-col text-white">
       <Navbar />
