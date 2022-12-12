@@ -97,7 +97,7 @@ function listFiles() {
             </td>
 
             <td>
-            <button onclick="
+            <button class="delete" onclick="
               fetch('https://www.googleapis.com/drive/v3/files/${id}',{
               method:'DELETE',
               headers: new Headers({ Authorization: 'Bearer ${ACCESS_TOKEN}'})
