@@ -87,6 +87,7 @@ function listFiles() {
       info.files.forEach(file => {
         let id = file.id
         result.innerHTML += `
+        
           <tr>
             <td>
             <a target="_blank" href="https://drive.google.com/file/d/${file.id}">${file.name}</a>

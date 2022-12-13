@@ -8,11 +8,11 @@ import Home from './pages/Home';
 import Signin from './pages/Signin';
 // import {Image } from './pages/index';
 // import CameraFeed from './pages/CapturePicture.jsx'
-import ImageAuth from "./ImageAuth";
+
 import Check from './check';
 import Authenticate from './Authenticate';
 import Enroll from './Enroll';
-import Drive from './gdrive/drive';
+// import Drive from './gdrive/drive';
 
 
 import ImageUpload from './components/TakePic';
@@ -32,7 +32,7 @@ function App() {
           <Route path='/camera' element={<ImageUpload/>}/>
           <Route path='/authenticate' element={<Authenticate/>}/>
           <Route path='/enroll' element={<Enroll/>}/>
-          <Route path='/drive' element={<Drive/>}/>
+          {/* <Route path='/drive' element={<Drive/>}/> */}
           {/* <Route path='/Image' element={<index/>}/> */}
           <Route
             path='/account'

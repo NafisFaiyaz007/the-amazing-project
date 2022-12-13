@@ -1,11 +1,12 @@
 body{
-   background-image:linear-gradient(to right,#afaaff, #f7ccff);
+   background-image:linear-gradient(to right,#271B29, #A93157);
 }
 
 .header{
     color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 10px;
+    align-items: center;
 }
 
 
@@ -15,15 +16,23 @@ thead th {
 }
 
 button{
-   background-color: white;
+   background-color:#e29ab1;
    border: none;
    cursor: pointer;
    color: black;
+    font-weight: bold;
    font-family: sans-serif ;
-   padding: 5px 10px;
+   padding: 15px 30px;
    border-radius: 12px;
    margin-bottom: 15px;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+button:hover{
+    background-color: #d84070;
+    
+}
+.tableMargin{
+    margin: 10%;
 }
 
 input[type=file]{
@@ -32,17 +41,21 @@ input[type=file]{
 
 .chooseFile{
     display: inline-block;
-    padding: 6px 10px;
+    padding: 15px 30px;
     cursor: pointer;
-    background-color: white;
+    background-color: #e29ab1;
     margin-left: 10px;
     margin-top: 30px;
     margin-bottom: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 12px;
     margin-right: 10px;
+    font-weight: bold;
 }
-
+.chooseFile:hover{
+    background-color: #d84070;
+    
+}
 input[type=submit]{
     background-color: white;
     margin-bottom: 20px;
@@ -52,12 +65,18 @@ input[type=submit]{
     padding: 6px 10px;
     border-radius: 12px;
     border: none;
+    font-weight: bold;
+     padding: 15px 30px;
+     
 }
-
+input[type=submit]:hover{
+     background-color: #d84070;
+}
 .search{
     margin-right: 10px;
     margin-left: 10px;
 }
+
 
 .images{
     margin-right: 10px;
@@ -67,11 +86,17 @@ input[type=submit]{
     margin-right: 10px;
 }
 
+
 .pdf{
     margin-right: 10px;
 }
 
+
 .delete:hover{
   background-color: rgb(175, 175, 175);
   color:white;
+}
+.mimetype{
+    color: white;
+    font-weight: bold;
 }

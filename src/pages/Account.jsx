@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import DragDrop from '../components/DragDrop';
-import Viewer from '../components/FileViewer';
+
 
 // import DrivePicker from '../context/Drive';
 //import {HandleClientLoad} from '../context/drivesource';
@@ -56,7 +56,7 @@ const Account = () => {
         </div>
       </div>
       {/* views the file on the page */}
-      <Viewer />
+     
     </div>
   );
 };
