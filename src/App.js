@@ -15,7 +15,7 @@ import Enroll from './Enroll';
 // import Drive from './gdrive/drive';
 
 
-import ImageUpload from './components/TakePic';
+// import ImageUpload from './components/TakePic';
 
 function App() {
 //   var cors = require('cors')
@@ -29,7 +29,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/check' element={<Check />} />
-          <Route path='/camera' element={<ImageUpload/>}/>
+          {/* <Route path='/camera' element={<ImageUpload/>}/> */}
           <Route path='/authenticate' element={<Authenticate/>}/>
           <Route path='/enroll' element={<Enroll/>}/>
           {/* <Route path='/drive' element={<Drive/>}/> */}
