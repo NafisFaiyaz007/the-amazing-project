@@ -11,7 +11,6 @@ function ImageAuth() {
 //const [userExists, setUserExists] = useState(true)
   let faceioInstance = null
   console.log(user.email)
-  // componentDidMount() {
 
     const userExists = async (email) => {
       try {
@@ -89,7 +88,7 @@ function ImageAuth() {
       userinfo.append("Image", facialId);
       api.post('/', userinfo).catch(console.error())
 
-    navigate("/account"); 
+    navigate("/drive"); 
   } catch (errorCode) {
       console.log(errorCode)
       handleError(errorCode)

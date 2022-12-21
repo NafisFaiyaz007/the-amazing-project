@@ -64,7 +64,7 @@ function Enroll () {
         console.log('Gender: ', userInfo.details.gender)
         console.log('Age Approximation: ', userInfo.details.age)
   
-      navigate("/account"); 
+      navigate("/drive"); 
     } catch (errorCode) {
         console.log(errorCode)
         handleError(errorCode)

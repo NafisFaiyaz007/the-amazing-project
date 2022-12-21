@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import axios from 'axios';
 // import PDFViewer from 'pdf-viewer-reactjs'
@@ -15,17 +15,23 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import Modal from 'react-modal';
 import FileViewer from 'react-file-viewer';
+import { Button } from 'antd'
 
-const fileTypes = ["JPG","JPEG","DOCX","PDF", "txt"];
+// import 'file-api/File';
+const fileTypes = ["JPG", "JPEG", "DOCX", "PDF", "txt"];
 
 export default function DragDrop() {
-  const [file, setFile] = useState();
+  const [file, setFile] = useState([]);
   const [openEx, setOpenEx] = useState(null);
   const [pdfFile, setPdfFile] = useState();
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const [img, setImg] = useState(null);
   const [doc, setDoc] = useState(null);
-  const [isDecrypted, setIsDecrypted] = useState(null);
+  const [allowDelete, setAllowDelete] = useState(null);
+
+  const queryParameters = new URLSearchParams(window.location.href)
+  let ACCESS_TOKEN = queryParameters.get("access_token")
+  console.log(ACCESS_TOKEN)
 
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -55,90 +61,125 @@ export default function DragDrop() {
 
   function closeModal() {
     setIsOpen(false);
+    // if (allowDelete === true) {
     setFile('')
     setPdfFile('')
     setImg('')
     setDoc('')
-    const data = new FormData() 
+    const data = new FormData()
     data.append('file', filename)
     axios.delete(`http://localhost:8080/delete/${file.name}`, { // receive two parameter endpoint url ,form data 
-    // headers: {
-    //   "Access-Control-Allow-Origin": "*",
-    //   "credentials": "true",
-    // }
-  })
-  .then(res => { // then print response status
-    console.log(res.statusText)
-  })
-  }
-  
-  const handleChange = (file) => {
-    setFile(file);
-    console.log(file)
-    console.log(file.name)
-    filename  = file.name
-    console.log(`The name of the file is ${filename}.`)
-    console.log(file.name.split('.').pop() )
-    // let reader = new FileReader();
-    // reader.readAsDataURL(file);
-    // reader.onloadend=(e)=>{
-    //   //setPdfError('');
-    //   setPdfFile(e.target.result);}
-    
-    };
-    
-    // function onDocumentLoadSuccess({ numPages }) {
-    //   setNumPages(numPages);
-    // }
-    const handleEncryption = (file) => {
-
-    const data = new FormData() 
-    data.append('file', file)
-    console.log("here")
-    axios.post("http://localhost:8080/upload", data, { // receive two parameter endpoint url ,form data 
       headers: {
-      "Access-Control-Allow-Origin": "*",
-      "credentials": "true",
-    }    
-  })
+        "Access-Control-Allow-Origin": "*",
+        "credentials": "true",
+      }
+    })
       .then(res => { // then print response status
         console.log(res.statusText)
       })
-     
-      console.log("posted")
+    // }
   }
-  const handleDecryption = (file) => {
-    const data = new FormData() 
+
+  const handleChange = (file) => {
+    setFile(file);
+    filename = file.name
+    console.log(`The name of the file is ${filename}.`)
+  };
+
+
+  async function handleEncryption(file) {
+    const data = new FormData()
     data.append('file', file)
-    axios.post("http://localhost:8080/decrypt", data, { // receive two parameter endpoint url ,form data 
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    }
-  })
-  .then(res => { // then print response status
-    console.log(res.statusText)
-  })
-  axios.get(`http://localhost:8080/update/${file.name}`, { // receive two parameter endpoint url ,form data 
+    axios.post("http://localhost:8080/upload", data, { // receive two parameter endpoint url ,form data 
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "credentials": "true",
+      },
+      responseType: 'arraybuffer'
     })
-    .then(res => { // then print response status
-      console.log(res.statusText)
-      setFile(res.data)
-    })
-  itemOpenHandler(file)
+      .then(res => {
+        console.log(res.statusText)
+        console.log(res.data)
+
+        const encryptedFile = new File([res.data], file.name, {
+          type: `${file.type}`,
+        });
+        uploadFile(encryptedFile)
+      })
   }
-  const itemOpenHandler = (file) => {
-    setOpenEx(file.name.split('.')[1]);
+
+  async function uploadFile(e) {
+    // e.preventDefault();
+
+    let metadata = {
+      name: e.name, // Filename at Google Drive
+      mimeType: e.mimeType, // mimeType at Google Drive
+    };
+
+    let form = new FormData();
+    form.append(
+      "metadata",
+      new Blob([JSON.stringify(metadata)], { type: "application/json" })
+    );
+    form.append("file", e);
+
+    fetch(
+      "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+      {
+        method: "POST",
+        headers: new Headers({ Authorization: "Bearer " + ACCESS_TOKEN }),
+        body: form,
+      }
+    )
+      .then((res) => res.json())
+      .then((info) => {
+        console.log(info)
+        e.value = ""
+      })
+  }
+  async function handleDecryption(file) {
+    const data = new FormData()
+    data.append('file', file)
+    await axios.post("http://localhost:8080/decrypt", data, { // receive two parameter endpoint url ,form data 
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      responseType: 'blob'
+    })
+      .then(res => { // then print response status
+        console.log(res.statusText)
+        console.log(res)
+        console.log("MIMETYPE: ", res.data.type)
+        let blob = new Blob([data], { type: 'application/pdf' })
+        let url = URL.createObjectURL(blob)
+
+        const decryptedFile = new File([res.data], file.name, {
+          type: file.type,
+        });
+        console.log(decryptedFile)
+        setFile(decryptedFile)
+      })
+    console.log(file)
+      .catch(error => {
+        console.log(error);
+      });
+    itemOpenHandler(file)
+    setAllowDelete(true)
+  }
+  async function itemOpenHandler(file) {
+    setOpenEx(file.name.split('.').pop());
     if (file.name.split('.').pop() === 'pdf') {
 
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend=(e)=>{
-          //setPdfError('');
-          setPdfFile(e.target.result);}
-          // setFile('')
-          console.log("itemOpen hanler")
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = (e) => {
+        //setPdfError('');
+        setPdfFile(e.target.result);
+      }
+      // setFile('')
+      console.log("itemOpen hanler")
     }
-    else if (file.name.split('.').pop() === 'jpg'){
+    else if (file.name.split('.').pop() === 'jpg') {
       setImg(file)
     }
     else {
@@ -146,8 +187,8 @@ export default function DragDrop() {
     }
 
   }
-      return (
-  <div className="DragDrop text-center text-l md:text-l lg:text-2xl text-white p-auto">
+  return (
+    <div className="DragDrop text-center text-l md:text-l lg:text-2xl text-white p-auto">
       {/* <h1>Hello To Drag & Drop Files</h1> */}
       <FileUploader handleChange={handleChange} name="file" types={fileTypes} />
       <p className="text-xs mt-5">
@@ -162,7 +203,7 @@ export default function DragDrop() {
           font-bold uppercase cursor-pointer hover:opacity-75 duration-150" /> '
       >
         Encrypt
-      </button> 
+      </button>
 
       <button onClick={() => handleDecryption(file)}
         className='bg-secondary  rounded-full md:text-s lg:text-xl text-black py-4 px-6  md:px-auto lg:py-2 lg:px-auto
@@ -170,10 +211,9 @@ export default function DragDrop() {
       >
         Decrypt
       </button>
-      
-      
-         {/* style={{marginTop: '2rem', marginBottom: '5rem'}}> */}
-        <button onClick={() => openModal(file)} className='bg-secondary  rounded-full md:text-s lg:text-xl text-black py-4 px-6  md:px-auto lg:py-2 lg:px-auto
+
+      {/* style={{marginTop: '2rem', marginBottom: '5rem'}}> */}
+      <button onClick={() => openModal(file)} className='bg-secondary  rounded-full md:text-s lg:text-xl text-black py-4 px-6  md:px-auto lg:py-2 lg:px-auto
           font-bold uppercase cursor-pointer hover:opacity-75 duration-150"/>'>View File</button>
       <Modal
         isOpen={modalIsOpen}
@@ -182,36 +222,36 @@ export default function DragDrop() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-        <button onClick={closeModal}>close</button>
-        
-        <div style={{overflow: 'hidden', maxHeight: '20%'}}>
+        <h1 class="text-center" ref={(_subtitle) => (subtitle = _subtitle)}><b>{file ? file.name : "no files uploaded yet"}</b></h1>
+        <Button type='primary' onClick={closeModal} danger>Close</Button>
 
-        {pdfFile&&(
-          
-          <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.1.81/build/pdf.worker.min.js">
-    <Viewer fileUrl={pdfFile}
-    plugins={[defaultLayoutPluginInstance]}></Viewer>
-  </Worker>
-)}      
+        <div style={{ overflow: 'hidden', maxHeight: '20%' }}>
 
-</div>
-{img&&
-      <div >
-          {
+          {pdfFile && (
+
+            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.1.81/build/pdf.worker.min.js">
+              <Viewer fileUrl={pdfFile}
+                plugins={[defaultLayoutPluginInstance]}></Viewer>
+            </Worker>
+          )}
+
+        </div>
+        {img &&
+          <div >
+            {
               img &&
               <div>
-                  <img src={window.URL.createObjectURL(img)} alt=""/>
+                <img src={window.URL.createObjectURL(img)} alt="" />
               </div>
-          }
-      </div>}
-      {
-                doc &&
-                <FileViewer
-                    fileType={openEx}
-                    filePath={window.URL.createObjectURL(doc)}
-                />
             }
+          </div>}
+        {
+          doc &&
+          <FileViewer
+            fileType={openEx}
+            filePath={window.URL.createObjectURL(doc)}
+          />
+        }
 
 
       </Modal>

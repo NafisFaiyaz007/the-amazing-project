@@ -1,17 +1,18 @@
+const { Blob } = require("buffer");
 var express = require('express');
 var app = express();
 var multer = require('multer')
 var cors = require('cors');
 var fs = require('fs');
+const stream = require("stream");
 const path = require('path');
 var drive = require('./src/googledrive/index')
 var filepath;
-
 const { Console } = require('console');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const { file } = require('googleapis/build/src/apis/file');
-app.use('/upload', express.static(__dirname + 'upload'));
+app.use('/upload', express.static(__dirname + '/upload'));
 app.all('*', (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://localhost:3000");
   next();
@@ -21,6 +22,7 @@ app.use(cors({
   credentials: true,
   optionSuccessStatus:200
 }));
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
     cb(null, 'upload')
@@ -43,9 +45,11 @@ function Encrypt  (buffer)  {
     const cipher = crypto.createCipheriv(algorithm, key, iv);
     //Create new encrypted buffer
     const result = Buffer.concat([iv, cipher.update(buffer), cipher.final()]);
-    console.log(result)
+    //console.log(result)
     return result;
 }
+console.log(__dirname)
+
 const decrypt = (encrypted) => {
 
   //Get the IV : the first 16 bytes
@@ -63,6 +67,7 @@ const decrypt = (encrypted) => {
   return result;
 }
 const filePath = path.join('./src', 'bg.jpg');
+console.log(filePath)
 app.post('/upload',(req, res) => {
     upload(req, res, function (err) {
            if (err instanceof multer.MulterError) {
@@ -77,17 +82,19 @@ app.post('/upload',(req, res) => {
         if (err)
             return console.error(err.message);
     
-
     
         //Encrypt the file
         const encryptedFile = Encrypt(file);
-    
+        console.log("dsadasd", encryptedFile)
+        console.log("heres\n",encryptedFile.toString())
         // Flow the encrypted file data to the new file
         fs.writeFile(`./Encrypted Files/${req.file.originalname}`, encryptedFile, (err, file) => {
             if (err)
                 return console.error(err.message);
             if (file) {
                 console.log('File Encrypted Successfully');
+                x = file;
+                console.log("sadasd",x)
             
             }
         })
@@ -95,17 +102,20 @@ app.post('/upload',(req, res) => {
           if (err) console.log(err);
           else {
             console.log(`\nDeleted file: ${req.file.filename}`);
+            console.log("dir name: ", __dirname)
+            const blob = new Blob([encryptedFile]);
+            console.log(blob)
+            res.send(encryptedFile)
 
           }
         }));
 
     })
-
-
-
-      //saveEncryptedFile(req.file.buffer, path.join("./uploads", req.file.originalname), secret.key, secret.iv, req.file, req.user);
-      res.status(200).send(req.file)
 });
+      });
+      app.get("/getFile/:name", function(req, res) {
+        const fileName = req.params.name;
+        res.sendFile(__dirname + `/Encrypted Files/${fileName}`);
       });
 
 
@@ -117,8 +127,6 @@ app.post('/decrypt', (req, res) => {
         return res.status(500).json(err)
     }
 
-console.log(req.file)
-
  fs.readFile(`./Encrypted Files/${req.file.originalname}`, (err, file) => {
   if (err)
       return console.error(err.message);
@@ -126,17 +134,17 @@ console.log(req.file)
   //Decrypt file
   if (file) {
       const decryptedFile = decrypt(file);
-      console.log(decryptedFile.toString());
-      filepath = req.file.filename
-      fs.writeFile(`./Encrypted Files/${req.file.originalname}`, decryptedFile, (err, file) => {
-        if (err)
-        return console.error(err.message);
-        console.log(`${req.file.filename} has been decrypted`)
-      });
+      // filepath = req.file.filename
+      // fs.writeFile(`./Encrypted Files/${req.file.originalname}`, decryptedFile, (err, file) => {
+      //   if (err)
+      //   return console.error(err.message);
+      //   console.log(`${req.file.filename} has been decrypted`)
+      // });
+      const blob = new Blob([decryptedFile]);
+      res.status(200).send(decryptedFile)
   }
 })
 
-res.status(200).send(req.file)
 });
 });
 app.get('/update/:name', (req, res)=> {

@@ -1,13 +1,16 @@
+import { googleLogout } from '@react-oauth/google';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import { Account } from '../pages/Account';
+
 
 const Navbar = () => {
   const { user, logOut } = UserAuth();
 
   const handleSignOut = async () => {
     try {
-      await logOut()
+      await logOut() ;googleLogout()
     } catch (error) {
       console.log(error)
     }
