@@ -23,9 +23,9 @@ app.use(cors({
   optionSuccessStatus:200
 }));
 
-var storage = multer.diskStorage({
+var storage = multer.memoryStorage({
     destination: function (req, file, cb) {
-    cb(null, 'upload')
+    cb(null, '')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' +file.originalname )
@@ -66,8 +66,7 @@ const decrypt = (encrypted) => {
   console.log("decrypted: ",result)
   return result;
 }
-const filePath = path.join('./src', 'bg.jpg');
-console.log(filePath)
+
 app.post('/upload',(req, res) => {
     upload(req, res, function (err) {
            if (err instanceof multer.MulterError) {
@@ -76,41 +75,10 @@ app.post('/upload',(req, res) => {
                return res.status(500).json(err)
            }
 
-      console.log(req.body)
-      
-      fs.readFile(`./upload/${req.file.filename}`, (err, file) => {
-        if (err)
-            return console.error(err.message);
-    
-    
-        //Encrypt the file
-        const encryptedFile = Encrypt(file);
-        console.log("dsadasd", encryptedFile)
-        console.log("heres\n",encryptedFile.toString())
-        // Flow the encrypted file data to the new file
-        fs.writeFile(`./Encrypted Files/${req.file.originalname}`, encryptedFile, (err, file) => {
-            if (err)
-                return console.error(err.message);
-            if (file) {
-                console.log('File Encrypted Successfully');
-                x = file;
-                console.log("sadasd",x)
-            
-            }
-        })
-        fs.unlink(`./upload/${req.file.filename}`, (err => {
-          if (err) console.log(err);
-          else {
-            console.log(`\nDeleted file: ${req.file.filename}`);
-            console.log("dir name: ", __dirname)
-            const blob = new Blob([encryptedFile]);
-            console.log(blob)
-            res.send(encryptedFile)
+      const encryptedFile = Encrypt(req.file.buffer);
+      console.log(encryptedFile)
+      res.send(encryptedFile);
 
-          }
-        }));
-
-    })
 });
       });
       app.get("/getFile/:name", function(req, res) {
@@ -126,48 +94,9 @@ app.post('/decrypt', (req, res) => {
     } else if (err) {
         return res.status(500).json(err)
     }
-
- fs.readFile(`./Encrypted Files/${req.file.originalname}`, (err, file) => {
-  if (err)
-      return console.error(err.message);
-
-  //Decrypt file
-  if (file) {
-      const decryptedFile = decrypt(file);
-      // filepath = req.file.filename
-      // fs.writeFile(`./Encrypted Files/${req.file.originalname}`, decryptedFile, (err, file) => {
-      //   if (err)
-      //   return console.error(err.message);
-      //   console.log(`${req.file.filename} has been decrypted`)
-      // });
-      const blob = new Blob([decryptedFile]);
-      res.status(200).send(decryptedFile)
-  }
-})
-
+    const decryptedFile = decrypt(req.file.buffer);
+    res.send(decryptedFile)
 });
-});
-app.get('/update/:name', (req, res)=> {
-  const fileName = req.params.name;
-  fs.readFile(`./Encrypted Files/${fileName}`, (err, file) => {
-    if (err)
-        return console.error(err.message);
-        return res.send(file);
-      }
-         )
-})
-app.delete('/delete/:name', (req, res) => {
-  const fileName = req.params.name;
-  console.log(`the file is: ${req.params.name}`)
-  fs.unlink(`./Encrypted Files/${fileName}`, (err) => {
-    if (err) {console.log(err)
-    }
-
-   return res.status(200).send({
-      message: "File is deleted.",
-    });
-
-  });
 });
 
 app.listen(8080, function() {

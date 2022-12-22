@@ -61,23 +61,10 @@ export default function DragDrop() {
 
   function closeModal() {
     setIsOpen(false);
-    // if (allowDelete === true) {
     setFile('')
     setPdfFile('')
     setImg('')
     setDoc('')
-    const data = new FormData()
-    data.append('file', filename)
-    axios.delete(`http://localhost:8080/delete/${file.name}`, { // receive two parameter endpoint url ,form data 
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "credentials": "true",
-      }
-    })
-      .then(res => { // then print response status
-        console.log(res.statusText)
-      })
-    // }
   }
 
   const handleChange = (file) => {
@@ -106,6 +93,7 @@ export default function DragDrop() {
         });
         uploadFile(encryptedFile)
       })
+      window.alert("File Encrypted!")
   }
 
   async function uploadFile(e) {
@@ -165,6 +153,7 @@ export default function DragDrop() {
       });
     itemOpenHandler(file)
     setAllowDelete(true)
+    window.alert("File decrypted!")
   }
   async function itemOpenHandler(file) {
     setOpenEx(file.name.split('.').pop());
@@ -173,7 +162,6 @@ export default function DragDrop() {
       let reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = (e) => {
-        //setPdfError('');
         setPdfFile(e.target.result);
       }
       // setFile('')

@@ -26,7 +26,7 @@ import { UserAuth } from "./context/AuthContext";
       const faceIoScriptLoaded = () => {
         console.log(faceIO)
         if (faceIO && !faceioInstance) {
-          faceioInstance = new faceIO("fioaf028")
+          faceioInstance = new faceIO("fioa29cb")
         }
       }
       
@@ -42,7 +42,7 @@ import { UserAuth } from "./context/AuthContext";
       
           console.log('Unique Facial ID: ', userData.facialId)
           console.log('PayLoad: ', userData.payload)
-       navigate('/account'); 
+       navigate('/drive'); 
        } catch (errorCode) {
           console.log(errorCode)
           handleError(errorCode)
